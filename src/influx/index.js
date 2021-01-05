@@ -6,17 +6,13 @@ function init(db_name){
     console.log("INFLUX_PORT: ", process.env.INFLUX_PORT || 8086);
     console.log("INFLUX_USERNAME: ", process.env.INFLUX_USERNAME || '');
 
-    try {
-        let influx = new Influx.InfluxDB({
-            host: process.env.INFLUX_HOST || 'localhost',
-            port: process.env.INFLUX_PORT || 8086,
-            database: db_name,
-            username: process.env.INFLUX_USERNAME || '',
-            password: process.env.INFLUX_PASSWORD || '',
-        });
-    } catch (err) {
-        console.log(err);
-    }
+    let influx = new Influx.InfluxDB({
+        host: process.env.INFLUX_HOST || 'localhost',
+        port: process.env.INFLUX_PORT || 8086,
+        database: db_name,
+        username: process.env.INFLUX_USERNAME || '',
+        password: process.env.INFLUX_PASSWORD || '',
+    });
 
     influxdb.config = {}
     influxdb.config.database = db_name
