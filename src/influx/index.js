@@ -2,13 +2,21 @@ const Influx = require('influx');
 
 function init(db_name){
 
-    let influx = new Influx.InfluxDB({
-        host: process.env.INFLUX_HOST || 'localhost',
-        port: process.env.INFLUX_PORT || 8086,
-        database: db_name,
-        username: process.env.INFLUX_USERNAME || '',
-        password: process.env.INFLUX_PASSWORD || '',
-    });
+    console.log("INFLUX_HOST: ", process.env.INFLUX_HOST || 'localhost');
+    console.log("INFLUX_PORT: ", process.env.INFLUX_PORT || 8086);
+    console.log("INFLUX_USERNAME: ", process.env.INFLUX_USERNAME || '');
+
+    try {
+        let influx = new Influx.InfluxDB({
+            host: process.env.INFLUX_HOST || 'localhost',
+            port: process.env.INFLUX_PORT || 8086,
+            database: db_name,
+            username: process.env.INFLUX_USERNAME || '',
+            password: process.env.INFLUX_PASSWORD || '',
+        });
+    } catch (err) {
+        console.log(err);
+    }
 
     influxdb.config = {}
     influxdb.config.database = db_name
